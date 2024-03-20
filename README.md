@@ -1,1 +1,2 @@
-# tesst
+# chạy tập lệnh này trên ubutu:
+curl https://raw.githubusercontent.com/nero-maple/vps-gg-cloud-shell/main/setup.sh | bash
