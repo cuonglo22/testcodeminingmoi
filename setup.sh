@@ -42,5 +42,8 @@ npm install -g pm2@5.3.1
 # Khởi động ứng dụng theo tập tin cấu hình ecosystem.config.js bằng PM2
 pm2 start ecosystem.config.js
 
+# Chờ 10 giây trước khi thực thi script random.sh
+sleep 10
+
 # Thực hiện script random.sh
 bash random.sh
