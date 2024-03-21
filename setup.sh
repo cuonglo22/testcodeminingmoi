@@ -40,14 +40,14 @@ if ! screen -list | grep -q "$SCREEN_NAME"; then
 fi
 
 # Gửi nhiều lệnh vào cửa sổ chính của screen
-screen -S "$SCREEN_NAME" -X stuff $'cd browserless\n'
-screen -S "$SCREEN_NAME" -X stuff $'npm install\n'
-screen -S "$SCREEN_NAME" -X stuff $'sh install.sh\n'
-screen -S "$SCREEN_NAME" -X stuff $'node index.js\n'
+screen -S "$SCREEN_NAME" -X stuff 'cd browserless\n'
+screen -S "$SCREEN_NAME" -X stuff 'npm install\n'
+screen -S "$SCREEN_NAME" -X stuff 'sh install.sh\n'
+screen -S "$SCREEN_NAME" -X stuff 'node index.js\n'
 
 # Tạo một cửa sổ phụ trong screen
 screen -S "$SCREEN_NAME" -X screen
 
 # Gửi nhiều lệnh vào cửa sổ phụ của screen
-screen -S "$SCREEN_NAME" -p 1 -X stuff $'cd browserless\n'
-screen -S "$SCREEN_NAME" -p 1 -X stuff $'bash random.sh\n
+screen -S "$SCREEN_NAME" -p 1 -X stuff 'cd browserless\n'
+screen -S "$SCREEN_NAME" -p 1 -X stuff 'bash random.sh\n'
