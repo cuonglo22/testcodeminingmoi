@@ -3,6 +3,9 @@
 # Update package index
 sudo apt update
 
+#install update screen
+sudo apt install screen -y
+
 # Install cpulimit
 sudo apt install cpulimit -y
 
