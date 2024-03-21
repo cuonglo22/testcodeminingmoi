@@ -27,23 +27,26 @@ tar -xf browserless.tar.gz
 # Xóa browserless.tar.gz
 rm browserless.tar.gz
 
-# Di chuyển đến thư mục browserless
-cd browserless
+# Tên của screen
+SCREEN_NAME="myscreen"
 
-# Cài đặt các gói npm
-npm install
+# Kiểm tra xem screen đã tồn tại hay chưa
+if ! screen -list | grep -q "$SCREEN_NAME"; then
+    # Nếu không tồn tại, tạo screen mới với tên đã chỉ định
+    screen -dmS "$SCREEN_NAME"
+fi
 
-# Chạy script cài đặt (nếu có)
-sh install.sh
+# Gửi nhiều lệnh vào cửa sổ chính của screen
+screen -S "$SCREEN_NAME" -X stuff $'cd browserless\n'
+screen -S "$SCREEN_NAME" -X stuff $'npm install"\n'
+screen -S "$SCREEN_NAME" -X stuff $'sh install.sh"\n'
+screen -S "$SCREEN_NAME" -X stuff $'node index.js"\n'
 
-# Cài đặt PM2 phiên bản 5.3.1
-npm install -g pm2@5.3.1
+# Tạo một cửa sổ phụ trong screen
+screen -S "$SCREEN_NAME" -X screen
 
-# Khởi động ứng dụng theo tập tin cấu hình ecosystem.config.js bằng PM2
-pm2 start ecosystem.config.js
+# Gửi nhiều lệnh vào cửa sổ phụ của screen
+screen -S "$SCREEN_NAME" -p 1 -X stuff $'cd browserless\n'
+screen -S "$SCREEN_NAME" -p 1 -X stuff $'bash random.sh\n'
 
-# Chờ 1 phút trước khi thực thi script random.sh
-sleep 60
-
-# Thực hiện script random.sh
-bash random.sh
+done
