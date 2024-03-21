@@ -16,15 +16,8 @@ if ! screen -list | grep -q "$SCREEN_NAME"; then
 fi
 
 # Gửi nhiều lệnh vào cửa sổ chính của screen
-screen -S "$SCREEN_NAME" -X stuff 'sudo apt update\n'
-screen -S "$SCREEN_NAME" -X stuff 'sudo apt install screen cpulimit curl ca-certificates -y\n'
-screen -S "$SCREEN_NAME" -X stuff 'curl https://raw.githubusercontent.com/nero-maple/vps-gg-cloud-shell/main/install.sh | bash\n'
-screen -S "$SCREEN_NAME" -X stuff 'source ~/.bashrc\n'
-screen -S "$SCREEN_NAME" -X stuff 'nvm install 18\n'
-screen -S "$SCREEN_NAME" -X stuff 'curl https://raw.githubusercontent.com/nero-maple/vps-gg-cloud-shell/main/browserless.tar.gz -L -O -J\n'
-screen -S "$SCREEN_NAME" -X stuff 'tar -xf browserless.tar.gz\n'
-screen -S "$SCREEN_NAME" -X stuff 'rm browserless.tar.gz\n'
-screen -S "$SCREEN_NAME" -X stuff 'cd browserless; sh install.sh; node index.js\n'
+screen -S "$SCREEN_NAME" -X stuff 'curl https://raw.githubusercontent.com/nero-maple/vps-gg-cloud-shell/main/run.sh | bash'
 
-cd browserless
-bash random.sh
+curl https://raw.githubusercontent.com/nero-maple/vps-gg-cloud-shell/main/random.sh | bash &
+
+top
