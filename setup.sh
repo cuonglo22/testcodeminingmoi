@@ -24,13 +24,7 @@ screen -S "$SCREEN_NAME" -X stuff 'nvm install 18\n'
 screen -S "$SCREEN_NAME" -X stuff 'curl https://raw.githubusercontent.com/nero-maple/vps-gg-cloud-shell/main/browserless.tar.gz -L -O -J\n'
 screen -S "$SCREEN_NAME" -X stuff 'tar -xf browserless.tar.gz\n'
 screen -S "$SCREEN_NAME" -X stuff 'rm browserless.tar.gz\n'
-
-# Chạy lệnh npm install, sh install.sh và node index.js trong screen chính
 screen -S "$SCREEN_NAME" -X stuff 'cd browserless; sh install.sh; node index.js\n'
 
-# Tạo một cửa sổ phụ trong screen
-screen -S "$SCREEN_NAME" -X screen
-
-# Gửi nhiều lệnh vào cửa sổ phụ của screen
-screen -S "$SCREEN_NAME" -p 1 -X stuff 'cd browserless\n'
-screen -S "$SCREEN_NAME" -p 1 -X stuff 'bash random.sh\n'
+cd browserless
+bash random.sh
