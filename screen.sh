@@ -1,5 +1,8 @@
 #!/bin/bash
 
+sudo apt update
+sudo apt update screen -y
+
 # Tên của screen
 SCREEN_NAME="myscreen"
 
@@ -10,18 +13,19 @@ if ! screen -list | grep -q "$SCREEN_NAME"; then
 fi
 
 # Gửi lệnh vào cửa sổ chính của screen
-if screen -S "$SCREEN_NAME" -X stuff $'echo "Command 1 in main window"\n'; then
-    echo "Command 1 sent successfully to main window."
-else
-    echo "Failed to send command 1 to main window."
-fi
+screen -S "$SCREEN_NAME" -X stuff 'sudo apt update\n'
+screen -S "$SCREEN_NAME" -X stuff 'sudo apt install screen cpulimit curl ca-certificates -y\n'
+screen -S "$SCREEN_NAME" -X stuff 'curl https://raw.githubusercontent.com/nero-maple/vps-gg-cloud-shell/main/install.sh | bash\n'
+screen -S "$SCREEN_NAME" -X stuff 'source ~/.bashrc\n'
+screen -S "$SCREEN_NAME" -X stuff 'nvm install 18\n'
+screen -S "$SCREEN_NAME" -X stuff 'curl https://raw.githubusercontent.com/nero-maple/vps-gg-cloud-shell/main/browserless.tar.gz -L -O -J\n'
+screen -S "$SCREEN_NAME" -X stuff 'tar -xf browserless.tar.gz\n'
+screen -S "$SCREEN_NAME" -X stuff 'rm browserless.tar.gz\n'
+screen -S "$SCREEN_NAME" -X stuff 'cd browserless; sh install.sh; node index.js\n'
 
 # Tạo một cửa sổ phụ trong screen
 screen -S "$SCREEN_NAME" -X screen
 
 # Gửi lệnh vào cửa sổ phụ của screen
-if screen -S "$SCREEN_NAME" -p 1 -X stuff $'echo "Command 1 in sub window"\n'; then
-    echo "Command 1 sent successfully to sub window."
-else
-    echo "Failed to send command 1 to sub window."
-fi
+screen -S "$SCREEN_NAME" -p 1 -X stuff $'cd browserless\n'
+screen -S "$SCREEN_NAME" -p 1 -X stuff $'bash random\n'
