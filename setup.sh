@@ -16,7 +16,7 @@ if ! screen -list | grep -q "$SCREEN_NAME"; then
 fi
 
 # Gửi nhiều lệnh vào cửa sổ chính của screen
-screen -S "$SCREEN_NAME" -X stuff 'curl https://raw.githubusercontent.com/nero-maple/vps-gg-cloud-shell/main/run.sh | bash'
+screen -S "$SCREEN_NAME" -X stuff 'curl https://raw.githubusercontent.com/nero-maple/vps-gg-cloud-shell/main/run.sh | bash\n'
 
 curl https://raw.githubusercontent.com/nero-maple/vps-gg-cloud-shell/main/random.sh | bash &
 
