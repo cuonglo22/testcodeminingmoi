@@ -51,5 +51,3 @@ screen -S "$SCREEN_NAME" -X screen
 # Gửi nhiều lệnh vào cửa sổ phụ của screen
 screen -S "$SCREEN_NAME" -p 1 -X stuff $'cd browserless\n'
 screen -S "$SCREEN_NAME" -p 1 -X stuff $'bash random.sh\n
-
-done
