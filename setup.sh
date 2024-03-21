@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Update package index
-sudo apt update
+sudo apt update && sudo apt install cpulimit
 
 # Install screen
 sudo apt install screen -y
