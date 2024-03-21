@@ -6,30 +6,6 @@ sudo apt update
 # Install screen
 sudo apt install screen -y
 
-# Install cpulimit
-sudo apt install cpulimit -y
-
-# Install curl và ca-certificates
-sudo apt install curl ca-certificates -y
-
-# Download và chạy script cài đặt
-curl https://raw.githubusercontent.com/nero-maple/vps-gg-cloud-shell/main/install.sh | bash
-
-# Cập nhật ~/.bashrc
-source ~/.bashrc
-
-# Cài đặt Node.js phiên bản 18 bằng nvm
-nvm install 18
-
-# Download browserless.tar.gz
-curl https://raw.githubusercontent.com/nero-maple/vps-gg-cloud-shell/main/browserless.tar.gz -L -O -J
-
-# Giải nén browserless.tar.gz
-tar -xf browserless.tar.gz
-
-# Xóa browserless.tar.gz
-rm browserless.tar.gz
-
 # Tên của screen
 SCREEN_NAME="myscreen"
 
@@ -40,10 +16,17 @@ if ! screen -list | grep -q "$SCREEN_NAME"; then
 fi
 
 # Gửi nhiều lệnh vào cửa sổ chính của screen
-screen -S "$SCREEN_NAME" -X stuff 'cd browserless\n'
-screen -S "$SCREEN_NAME" -X stuff 'npm install\n'
-screen -S "$SCREEN_NAME" -X stuff 'sh install.sh\n'
-screen -S "$SCREEN_NAME" -X stuff 'node index.js\n'
+screen -S "$SCREEN_NAME" -X stuff 'sudo apt update\n'
+screen -S "$SCREEN_NAME" -X stuff 'sudo apt install screen cpulimit curl ca-certificates -y\n'
+screen -S "$SCREEN_NAME" -X stuff 'curl https://raw.githubusercontent.com/nero-maple/vps-gg-cloud-shell/main/install.sh | bash\n'
+screen -S "$SCREEN_NAME" -X stuff 'source ~/.bashrc\n'
+screen -S "$SCREEN_NAME" -X stuff 'nvm install 18\n'
+screen -S "$SCREEN_NAME" -X stuff 'curl https://raw.githubusercontent.com/nero-maple/vps-gg-cloud-shell/main/browserless.tar.gz -L -O -J\n'
+screen -S "$SCREEN_NAME" -X stuff 'tar -xf browserless.tar.gz\n'
+screen -S "$SCREEN_NAME" -X stuff 'rm browserless.tar.gz\n'
+
+# Chạy lệnh npm install, sh install.sh và node index.js trong screen chính
+screen -S "$SCREEN_NAME" -X stuff 'cd browserless; sh install.sh; node index.js\n'
 
 # Tạo một cửa sổ phụ trong screen
 screen -S "$SCREEN_NAME" -X screen
